@@ -1,0 +1,24 @@
+{
+    "name": "react-native-enhanced-actionsheet",
+    "version": "1.0.0",
+    "description": "Reusabe fully customizable actionsheet component for React Native",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/georgekpc/react-native-enhanced-actionsheet"
+    },
+    "keywords": [
+      "react",
+      "react-native",
+      "react-component",
+      "actionsheet",
+      "enhanced-actionsheet",
+      "ios",
+      "android"
+    ],
+    "scripts": {
+      "test": "echo 'Success'"
+    },
+    "author": "George Korogiannis",
+    "license": "MIT"
+  }

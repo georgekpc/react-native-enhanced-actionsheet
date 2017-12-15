@@ -6,8 +6,19 @@ import {StyleSheet, View, Text, Dimensions, ScrollView, Modal, TouchableOpacity}
 export default class EnhancedActionSheet extends Component {
     render() {
 
-        const {visible, title, data, selected, onCancelPress, onOptionPress} = this.props
+        const {
+                visible, 
+                title, 
+                data, 
+                selected, 
+                onCancelPress, 
+                onOptionPress,
+                titleContainerStyle,
+                titleStyle
+              } = this.props
+
         const dataLength = data.length
+
 
         return (
             <Modal
@@ -17,8 +28,8 @@ export default class EnhancedActionSheet extends Component {
                 <View style={styles.backgroundLayer}>
                     <View style={styles.container}>
                         <View style={styles.actionsheetContainer}>
-                            <View style={styles.titleContainer}>
-                                <Text style={styles.title}>{title ? title : 'Select'}</Text>
+                            <View style={[styles.titleContainer, titleContainerStyle]}>
+                                <Text style={[styles.title, titleStyle]}>{title ? title : 'Select'}</Text>
                             </View>
                             <ScrollView showsVerticalScrollIndicator={false}>
                                 {data.map((e, i) => 

@@ -10,14 +10,13 @@ export default class EnhancedActionSheet extends Component {
                 visible, 
                 title, 
                 data, 
-                selected, 
                 onCancelPress, 
                 onOptionPress,
                 titleContainerStyle,
                 titleStyle
               } = this.props
 
-        const dataLength = data.length
+        const dataLength = data ? data.length : 0
 
 
         return (
@@ -33,12 +32,13 @@ export default class EnhancedActionSheet extends Component {
                             </View>
                             <ScrollView showsVerticalScrollIndicator={false}>
                                 {data.map((e, i) => 
-                                    <TouchableOpacity onPress={() => onOptionPress(e)} key={i} activeOpacity={1} 
-                                                    style={[
+                                    <TouchableOpacity onPress={() => onOptionPress ? onOptionPress(e) : {}} key={i} activeOpacity={1} 
+                                                      style={[
                                                                 styles.labelContainer, 
                                                                 i === (dataLength - 1) ? styles.lastLabelContainer : null, 
-                                                                selected == e.id ? styles.selectedLabelContainer : null]} >
-                                        <Text style={[styles.label, selected == e.id ? styles.selectedLabel : null]}>{e.label}</Text>
+                                                                this._isSelected(e) ? styles.selectedLabelContainer : null
+                                                      ]} >
+                                        <Text style={[styles.label, this._isSelected(e) ? styles.selectedLabel : null]}>{e.label}</Text>
                                     </TouchableOpacity>
                                 )}
                             </ScrollView>
@@ -51,6 +51,8 @@ export default class EnhancedActionSheet extends Component {
             </Modal>
         )
     }
+
+    _isSelected = (e) => this.props.selected === e.id && e.id !== undefined
 }
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window')

@@ -11,7 +11,6 @@ export default class EnhancedActionSheet extends Component {
                 title, 
                 data, 
                 onCancelPress, 
-                onOptionPress,
                 titleContainerStyle,
                 titleStyle
               } = this.props
@@ -32,14 +31,7 @@ export default class EnhancedActionSheet extends Component {
                             </View>
                             <ScrollView showsVerticalScrollIndicator={false}>
                                 {data.map((e, i) => 
-                                    <TouchableOpacity onPress={() => onOptionPress ? onOptionPress(e) : {}} key={i} activeOpacity={1} 
-                                                      style={[
-                                                                styles.labelContainer, 
-                                                                i === (dataLength - 1) ? styles.lastLabelContainer : null, 
-                                                                this._isSelected(e) ? styles.selectedLabelContainer : null
-                                                      ]} >
-                                        <Text style={[styles.label, this._isSelected(e) ? styles.selectedLabel : null]}>{e.label}</Text>
-                                    </TouchableOpacity>
+                                   this._renderOption(e, i, dataLength) 
                                 )}
                             </ScrollView>
                         </View>
@@ -51,6 +43,19 @@ export default class EnhancedActionSheet extends Component {
             </Modal>
         )
     }
+
+    _renderOption = (e, i, dataLength) => (
+        <TouchableOpacity onPress={() => this.props.onOptionPress ? this.props.onOptionPress(e) : {}} key={i} activeOpacity={1} 
+                            style={[
+                                    styles.labelContainer, 
+                                    this._isLastOption(i, dataLength) ? styles.lastLabelContainer : null, 
+                                    this._isSelected(e) ? styles.selectedLabelContainer : null
+                            ]} >
+            <Text style={[styles.label, this._isSelected(e) ? styles.selectedLabel : null]}>{e.label}</Text>
+        </TouchableOpacity>
+    )
+
+    _isLastOption = (i, dataLength) => i === (dataLength - 1)
 
     _isSelected = (e) => this.props.selected === e.id && e.id !== undefined
 }

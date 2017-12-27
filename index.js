@@ -11,8 +11,7 @@ export default class EnhancedActionSheet extends Component {
                 title, 
                 data, 
                 onCancelPress, 
-                titleContainerStyle,
-                titleStyle
+                titleContainerStyle
               } = this.props
 
         const dataLength = data ? data.length : 0
@@ -26,8 +25,8 @@ export default class EnhancedActionSheet extends Component {
                 <View style={styles.backgroundLayer}>
                     <View style={styles.container}>
                         <View style={styles.actionsheetContainer}>
-                            <View style={[styles.titleContainer, titleContainerStyle]}>
-                                <Text style={[styles.title, titleStyle]}>{title ? title : 'Select'}</Text>
+                            <View style={[styles.titleContainer, this._styleTitleContainer()]}>
+                                <Text style={[styles.title, this._styleTitle()]}>{title ? title : 'Select'}</Text>
                             </View>
                             <ScrollView showsVerticalScrollIndicator={false}>
                                 {data.map((e, i) => 
@@ -35,8 +34,8 @@ export default class EnhancedActionSheet extends Component {
                                 )}
                             </ScrollView>
                         </View>
-                        <TouchableOpacity onPress={onCancelPress} activeOpacity={1} style={styles.cancelContainer}>
-                            <Text style={styles.cancel}>Cancel</Text>
+                        <TouchableOpacity onPress={onCancelPress} activeOpacity={1} style={[styles.cancelContainer, this._styleCancelContainer()]}>
+                            <Text style={[styles.cancel, this._styleCancelText()]}>Cancel</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -44,16 +43,74 @@ export default class EnhancedActionSheet extends Component {
         )
     }
 
+    _styleTitle = () => {
+        if(this.props.titleStyle) {
+            return this.props.titleStyle
+        }
+    }
+
+    _styleTitleContainer = () => {
+        if(this.props.titleContainerStyle) {
+            return this.props.titleContainerStyle
+        }
+    }
+
+    _styleCancelText = () => {
+        if(this.props.cancelTextStyle) {
+            return this.props.cancelTextStyle
+        }
+    }
+
+    _styleCancelContainer = () => {
+        if(this.props.cancelContainerStyle) {
+            return this.props.cancelContainerStyle
+        }
+    }
+
     _renderOption = (e, i, dataLength) => (
-        <TouchableOpacity onPress={() => this.props.onOptionPress ? this.props.onOptionPress(e) : {}} key={i} activeOpacity={1} 
+        <TouchableOpacity onPress={() => this.props.onOptionPress ? this.props.onOptionPress(e) : {}} 
+                            key={i} 
+                            activeOpacity={1} 
                             style={[
                                     styles.labelContainer, 
                                     this._isLastOption(i, dataLength) ? styles.lastLabelContainer : null, 
-                                    this._isSelected(e) ? styles.selectedLabelContainer : null
+                                    this._isSelected(e) ? styles.selectedLabelContainer : null,
+                                    this._styleOptionContainer(),
+                                    this._styleSelectedOptionContainer(e)
                             ]} >
-            <Text style={[styles.label, this._isSelected(e) ? styles.selectedLabel : null]}>{e.label}</Text>
+            <Text style={[
+                            styles.label, 
+                            this._isSelected(e) ? styles.selectedLabel : null, 
+                            this._styleOptionText(),
+                            this._styleSelectedOptionText(e)]}>
+                {e.label}
+            </Text>
         </TouchableOpacity>
     )
+
+    _styleOptionContainer = () => {
+        if(this.props.optionContainerStyle) {
+            return this.props.optionContainerStyle
+        }
+    }
+
+    _styleOptionText = () => {
+        if(this.props.optionTextStyle) {
+            return this.props.optionTextStyle
+        }
+    }
+
+    _styleSelectedOptionContainer = (e) => {
+        if(this.props.selectedOptionContainerStyle && this._isSelected(e)) {
+            return this.props.selectedOptionContainerStyle
+        }
+    }
+
+    _styleSelectedOptionText = (e) => {
+        if(this.props.selectedOptionTextStyle && this._isSelected(e)) {
+            return this.props.selectedOptionTextStyle
+        }
+    }
 
     _isLastOption = (i, dataLength) => i === (dataLength - 1)
 

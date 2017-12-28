@@ -9,8 +9,8 @@ A super lightweight, dependency-free component for React Native that replicates 
 
 
 ## How to install it
-1. run `npm install react-native-enhanced-actionsheet --save`<br>
-2. add this single line of code to the file you want to use the react-native-enhanced-actionsheet component `import Actionsheet from 'react-native-enhanced-actionsheet'`
+1. Run `npm install react-native-enhanced-actionsheet --save` or `yarn add react-native-enhanced-actionsheet`<br>
+2. Import it in the component of your choice `import Actionsheet from 'react-native-enhanced-actionsheet'`
 
 ## How to use it
 ```javascript

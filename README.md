@@ -1,6 +1,6 @@
 # react-native-enhanced-actionsheet
 
-A super lightweight, dependency-free component for React Native that replicates native iOS action sheet. An Android style action sheet will be added as well within the next few versions.
+A super lightweight, fully customizable, dependency-free component for React Native that replicates native iOS action sheet. An Android style action sheet will be added as well within the next few versions.
 
 <div>
   <img src="https://media.giphy.com/media/3oFzlV8xJd8rvElHLW/giphy.gif" />
@@ -86,3 +86,21 @@ const styles = StyleSheet.create({
   },
 })
 ```
+
+## Props
+| Prop                         | Info          |
+| ---------------------------- | ------------- |
+| visible                      | (bool) - Toggles actionsheet |
+| data                         | (array of objects) - A list of actionsheet options. Each object must have **id** and **label** fields. |
+| title                        | (string) - Actionsheet title. Default value is *Select* |
+| selected                     | (int) - If you would like to highlight the selected element, provide the id of this element. |
+| titleStyle                   | (style object) - Object that styles actionsheet title. Provided styles should be appropriate for *Text* component |
+| titleContainerStyle          | (style object) - Object that styles actionsheet title container. Provided styles should be appropriate for *View* component |
+| cancelTextStyle              | (style object) - Object that styles cancel text. Provided styles should be appropriate for *Text* component |
+| cancelContainerStyle         | (style object) - Object that styles cancel button. Provided styles should be appropriate for *View* component |
+| optionTextStyle              | (style object) - Object that styles options text. Provided styles should be appropriate for *Text* component |
+| optionContainerStyle         | (style object) - Object that styles option buttons. Provided styles should be appropriate for *View* component |
+| selectedOptionTextStyle      | (style object) - Object that styles selected option text. Provided styles should be appropriate for *Text* component |
+| selectedOptionContainerStyle | (style object) - Object that styles selected option button. Provided styles should be appropriate for *View* component |
+| onOptionPress | (function) - Callback function that it is called when an option is pressed. The whole object of the option that was pressed, is returned. |
+| onCancelPress | (function) - Callback function that it is called when cancel button is pressed. |

@@ -1,6 +1,6 @@
 {
     "name": "react-native-enhanced-actionsheet",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Reusabe fully customizable actionsheet component for React Native",
     "main": "index.js",
     "repository": {

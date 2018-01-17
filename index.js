@@ -114,7 +114,15 @@ export default class EnhancedActionSheet extends Component {
 
     _isLastOption = (i, dataLength) => i === (dataLength - 1)
 
-    _isSelected = (e) => this.props.selected === e.id && e.id !== undefined
+    _isSelected = (e) => {
+        const {selected} = this.props
+
+        if(Array.isArray(selected)) {
+            return selected.includes(e.id)
+        }
+        
+        return selected === e.id && e.id !== undefined
+    }
 }
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window')

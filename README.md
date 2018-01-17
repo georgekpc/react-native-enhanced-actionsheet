@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 | visible                      | (bool) - Toggles actionsheet |
 | data                         | (array of objects) - A list of actionsheet options. Each object must have **id** and **label** fields. |
 | title                        | (string) - Actionsheet title. Default value is *Select* |
-| selected                     | (int) - If you would like to highlight the selected element, provide the id of this element. |
+| selected                     | (string/array of strings) - If you would like to highlight the selected element, provide the id of this element. If you want to make Actionsheet support multiple selected items, provide an array of ids. |
 | titleStyle                   | (style object) - Object that styles actionsheet title. Provided styles should be appropriate for *Text* component |
 | titleContainerStyle          | (style object) - Object that styles actionsheet title container. Provided styles should be appropriate for *View* component |
 | cancelTextStyle              | (style object) - Object that styles cancel text. Provided styles should be appropriate for *Text* component |

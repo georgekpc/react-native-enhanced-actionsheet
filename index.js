@@ -9,6 +9,7 @@ export default class EnhancedActionSheet extends Component {
         const {
                 visible, 
                 title, 
+                cancelBtnText,
                 data, 
                 onCancelPress, 
                 titleContainerStyle
@@ -35,7 +36,7 @@ export default class EnhancedActionSheet extends Component {
                             </ScrollView>
                         </View>
                         <TouchableOpacity onPress={onCancelPress} activeOpacity={1} style={[styles.cancelContainer, this._styleCancelContainer()]}>
-                            <Text style={[styles.cancel, this._styleCancelText()]}>Cancel</Text>
+                            <Text style={[styles.cancel, this._styleCancelText()]}>{cancelBtnText ? cancelBtnText : 'Cancel'}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
